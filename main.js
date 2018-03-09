@@ -35,3 +35,5 @@ if (fs.existsSync(entryPoint)) {
 function printError(err) {
   console.log(`${chalk.red('Error')} ${err}`);
 }
+
+// commentaire inutile
