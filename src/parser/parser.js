@@ -4,7 +4,7 @@ module.exports = tokens => {
 	while (tokens.length > 0) {
 		var current_token = tokens.shift();
 		switch(current_token.type){
-			case 'variable-declaraction':
+			case 'variable-declaration':
 				var expression = {
 					type: 'VariableDeclarationExpression',
 					value: ''

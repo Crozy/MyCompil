@@ -128,6 +128,30 @@ module.exports = input => {
 		addToken('parenthesis-end', ')');
         current++
         break
+      case '{':
+        addToken('accolade-start', '{');
+        current++
+        break
+      case '}':
+        addToken('accolade-end', '}');
+        current++
+        break
+      case '<':
+        addToken('inf-default_operator', '<');
+        current++
+        break
+      case '>':
+        addToken('sup-default_operator', '>');
+        current++
+        break
+      case '*':
+        addToken('mult-default_operator', '*');
+        current++
+        break
+      case '+':
+        addToken('add-default_operator', '+');
+        current++
+        break
       default:
         const isKeyWord = checkKeywords(slice)
         if (isKeyWord) {
@@ -162,7 +186,7 @@ module.exports = input => {
 }
 
 const ALPHA = /([A-Z]|[a-z])/
-function isAlpa(char) {
+function isAlpha(char) {
   return char.match(ALPHA)
 }
 
