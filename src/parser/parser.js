@@ -28,8 +28,10 @@ module.exports = tokens => {
 					var next = tokens.shift();
 					current_token= next;
 					switch(next.type){
-						case 'object-string':
+						// case 'object-string':
+						case 'String':
 						case 'number':
+						case 'int':
 						case 'number-float':
 							expression.value = next;
 							break;
@@ -40,8 +42,7 @@ module.exports = tokens => {
 					
 				}
 				break;
-			
-			case 'console-object':
+			case 'system-object':
 				var next = tokens.shift();
 				current_token= next;
 				if(next.type=="point"){
@@ -62,10 +63,11 @@ module.exports = tokens => {
 								next= tokens.shift();
 								current_token= next;
 								switch(next.type){
-									case 'object-string':
-									case 'number':
-									case 'number-float':
-									case 'identifier':
+									// case 'object-string':
+									   case 'number':
+									   case 'number-float':
+									   case 'identifier':
+									   case 'String':
 										expression.arguments.push(next);	
 										break;
 									case 'parenthesis-end':

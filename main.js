@@ -12,7 +12,7 @@ const [nodeLocation, karcLocation, ...options] = args;
 
 const entryPoint = options.length != 0
   ? options[0]
-  : 'index.js';
+  : 'index.java';
   
 if (fs.existsSync(entryPoint)) {
   try {
@@ -36,4 +36,4 @@ function printError(err) {
   console.log(`${chalk.red('Error')} ${err}`);
 }
 
-// commentaire inutile
+

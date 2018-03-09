@@ -54,7 +54,7 @@ module.exports = input => {
           sub_char = slice.charAt(sub_current)
 		  if (sub_char === '"') {
 			sub_current++
-			addToken('object-string', slice.substring(0, sub_current))
+			addToken('String', slice.substring(0, sub_current))
 			current += sub_current;
 			isString= true;
             break;
