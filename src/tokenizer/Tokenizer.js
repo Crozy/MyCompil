@@ -1,4 +1,4 @@
-import TokenFactory from "../../../../../../Users/jptur/Desktop/mycompiler-dev/src/TokenFactory.js";
+import TokenFactory from "./TokenFactory.js";
 
 export default class Tokenizer{
 	
@@ -23,6 +23,7 @@ export default class Tokenizer{
 	addToken(input){
 		let token = TokenFactory.create(input, this.cursor);
 		if(!token){
+			console.log(token);
 			throw `syntax error at ${this.cursor_y}:${this.cursor_x}`
 		}else{
 			switch(token.type){
@@ -39,10 +40,18 @@ export default class Tokenizer{
 				case 'virgule':
 				case 'parenthesis-start':
 				case 'parenthesis-end':
+                case '{':
+                case '}':
+				case '<':
+                case '>':
+                case '*':
+                case '+':
 					this.cursor++
+                    this.cursor_x++
 					break;
 				default:
 					this.cursor+= token.value.length;
+                    this.cursor_x+= token.value.length;
 			}
 			this.tokens.push(token);
 		}

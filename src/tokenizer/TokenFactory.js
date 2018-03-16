@@ -27,6 +27,18 @@ export default class TokenFactory{
 				return new Token('parenthesis-start', '(', pos);
 			case ')':
 				return new Token('parenthesis-end', ')', pos);
+            case '{':
+                return new Token('accolade-star', '{', pos);
+            case '}':
+                return new Token('accolade-end', '}', pos);
+            case '<':
+                return new Token('inf-default_operator', '<', pos);
+            case '>':
+                return new Token('sup-default_operator', '>', pos);
+            case '*':
+                return new Token('mult-default_operator', '*', pos);
+            case '+':
+                return new Token('add-default_operator', '+', pos);
 			case '"':
 				sub_current = 1
 				sub_char = value.charAt(sub_current)
@@ -65,7 +77,7 @@ export default class TokenFactory{
 					isFloat = true
 				  }
 
-				  if (!isDigit(sub_char) && sub_char !== '.') {
+				  if (!this.isDigit(sub_char) && sub_char !== '.') {
 					return new Token(isFloat ? 'number-float' : 'number', value.substring(0, sub_current), pos);
 					current += sub_current
 					break
@@ -77,8 +89,10 @@ export default class TokenFactory{
 			default:
 				let mytoken = this.checkKeywords(value)
 				if (mytoken) {
-				  mytoken.pos = pos;
-				  return mytoken;
+					 mytoken.pos = pos;
+                    console.log(mytoken);
+
+                    return mytoken;
 				} else if (char.match(/[aA-zZ]/)) {
 				  // look for any identifier
 				  sub_current = 0
@@ -98,7 +112,7 @@ export default class TokenFactory{
 		}
 	}
 	
-	static isAlpa(val) {
+	static isAlpha(val) {
 		const ALPHA = /([A-Z]|[a-z])/;
 		return val.match(ALPHA)
 	}

@@ -4,8 +4,8 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-import Tokenizer from "../../../../Users/jptur/Desktop/mycompiler-dev/src/Tokenizer.js";
-import ASTParser from "../../../../Users/jptur/Desktop/mycompiler-dev/src/ASTParser.js";
+import Tokenizer from "./src/tokenizer/Tokenizer.js";
+import ASTParser from "./src/parser/ASTParser.js";
 
 const args = process.argv;
 const [nodeLocation, karcLocation, ...options] = args;

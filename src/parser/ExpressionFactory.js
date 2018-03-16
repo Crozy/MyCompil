@@ -1,5 +1,5 @@
-import ExpressionVarDeclaration from "../../../../../../Users/jptur/Desktop/mycompiler-dev/src/ExpressionVarDeclaration.js";
-import ExpressionVarAssignation from "../../../../../../Users/jptur/Desktop/mycompiler-dev/src/ExpressionVarAssignation.js";
+import ExpressionVarDeclaration from "./ExpressionVarDeclaration.js";
+import ExpressionVarAssignation from "./ExpressionVarAssignation.js";
 
 export default class ExpressionFactory{
 	

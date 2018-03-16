@@ -1,5 +1,5 @@
-import Expression from "../../../../../../Users/jptur/Desktop/mycompiler-dev/src/Expression.js";
-import ExpressionFactory from "../../../../../../Users/jptur/Desktop/mycompiler-dev/src/ExpressionFactory.js";
+import Expression from "./Expression.js";
+import ExpressionFactory from "./ExpressionFactory.js";
 
 export default class ASTParser{
 	constructor(){
