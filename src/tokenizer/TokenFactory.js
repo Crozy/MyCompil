@@ -28,7 +28,7 @@ export default class TokenFactory{
 			case ')':
 				return new Token('parenthesis-end', ')', pos);
             case '{':
-                return new Token('accolade-star', '{', pos);
+                return new Token('accolade-start', '{', pos);
             case '}':
                 return new Token('accolade-end', '}', pos);
             case '<':

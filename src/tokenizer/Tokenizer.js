@@ -39,12 +39,12 @@ export default class Tokenizer{
 				case 'virgule':
 				case 'parenthesis-start':
 				case 'parenthesis-end':
-                case '{':
-                case '}':
-				case '<':
-                case '>':
-                case '*':
-                case '+':
+                case 'accolade-start':
+                case 'accolade-end':
+				case 'inf-default_operator':
+                case 'sup-default_operator':
+                case 'mult-default_operator':
+                case 'add-default_operator':
 					this.cursor++
                     this.cursor_x++
 					break;
