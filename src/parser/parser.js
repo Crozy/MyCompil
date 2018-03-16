@@ -34,7 +34,7 @@ module.exports = tokens => {
 							expression.value = next;
 							break;
 						default:
-							throw 'You have to assigne a know type to variable '+last_token.value;
+							throw 'You have to assign a known type to variable '+last_token.value;
 					}
 					AST.body.push(expression);
 					
@@ -78,7 +78,7 @@ module.exports = tokens => {
 								}
 							}while(next.type!="parenthesis-end" && tokens.length > 0);
 							if(!isEnding){
-								throw 'You have to close parenthesis whene you use method.';
+								throw 'You have to close parenthesis where you use method.';
 							}else{
 								AST.body.push(expression);
 							}
