@@ -23,7 +23,6 @@ export default class Tokenizer{
 	addToken(input){
 		let token = TokenFactory.create(input, this.cursor);
 		if(!token){
-			console.log(token);
 			throw `syntax error at ${this.cursor_y}:${this.cursor_x}`
 		}else{
 			switch(token.type){

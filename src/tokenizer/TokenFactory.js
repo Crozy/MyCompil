@@ -89,10 +89,8 @@ export default class TokenFactory{
 			default:
 				let mytoken = this.checkKeywords(value)
 				if (mytoken) {
-					 mytoken.pos = pos;
-                    console.log(mytoken);
-
-                    return mytoken;
+					mytoken.pos = pos;
+					return mytoken;
 				} else if (char.match(/[aA-zZ]/)) {
 				  // look for any identifier
 				  sub_current = 0
