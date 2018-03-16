@@ -6,11 +6,11 @@ export default class ExpressionFactory{
 	static create(cursor, tokens){
 		let current_token= tokens[cursor.position];
 		switch(current_token.type){
-			case 'variable-declaraction':
+			case 'variable-declaration':
 				cursor.position++
 				let next = tokens[cursor.position];
 				if(next.type!="space"){
-					throw 'You have to put a space after a variable declaraction.';
+					throw 'You have to put a space after a variable declaration.';
 				}
 				cursor.position++
 				next = tokens[cursor.position];
@@ -26,7 +26,7 @@ export default class ExpressionFactory{
 					next = tokens[cursor.position];
 					return new ExpressionVarAssignation(tokens[cursor.position-4], next);	
 				}else{
-					throw 'You have to put a space after a variable declaraction.';
+					throw 'You have to put a space after a variable declaration.';
 				}
 				break;
 		}
