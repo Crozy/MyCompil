@@ -15,7 +15,7 @@ export default class ExpressionVarAssignation extends Expression{
 				this.variableValue= token_value;
 				break;
 			default:
-				throw 'You have to assigne a know type to variable ';
+				throw 'You have to assign a known type to variable ';
 		}
 	}
 }

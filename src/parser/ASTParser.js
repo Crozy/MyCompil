@@ -15,7 +15,6 @@ export default class ASTParser{
 				case 'space':
 				case 'line-break-r':
 				case 'line-break':
-				case 'console-object':
 				case 'point':
 				case 'parenthesis-start':
 				case 'parenthesis-end':
@@ -25,6 +24,7 @@ export default class ASTParser{
 					let exp = ExpressionFactory.create(cursor, tokens);
 					if(exp){
 						instance.addExpToTree(exp);
+						console.log(exp);
 					}else{
 						throw `grammar error`
 					}
