@@ -8,6 +8,10 @@ export default class ExpressionFactory{
         let next = tokens[cursor.position];
         let id = next;
         let childs = [];
+        let compteur;
+        let compteurEgal
+        let operateurConditionnel;
+        let i;
 		switch(current_token.type){
             case 'int-default_type':
             	childs.push(next);
@@ -115,23 +119,115 @@ export default class ExpressionFactory{
                     throw 'You have to define a identifier for your variable.';
                 }
                 break;
-			//case 'if-control_flow':
-                //TODO
-                //break;
-			// case 'equal':
-			// 	if(tokens[cursor.position-1].type=="space" && tokens[cursor.position-2].type=="identifier"){
-			// 		cursor.position++
-			// 		let next = tokens[cursor.position];
-			// 		if(next.type!="space"){
-			// 			throw 'You have to put a space after a variable assignation.';
-			// 		}
-			// 		cursor.position++
-			// 		next = tokens[cursor.position];
-			// 		return new ExpressionVarAssignation(tokens[cursor.position-4], next);
-			// 	}else{
-			// 		throw 'You have to put a space after a variable declaration.';
-			// 	}
-			// 	break;
+                
+            case 'if-control_flow':
+                cursor.position++
+                next = tokens[cursor.position];
+
+                while(next.type==="space") {
+                    cursor.position++
+                    next = tokens[cursor.position];
+                }
+                if(next.type != "parenthesis-start"){
+                    throw 'Le "if" est mal définie';
+                }
+                
+                compteur = 0;
+                i = 0;
+
+              //Boucle jusqu'à temps de trouver un "{"
+                while(next.type != "accolade-start"){
+                    //i = i + 1;
+                    console.log(compteur);
+
+                    while(next.type==="space") {
+                        cursor.position++
+                        next = tokens[cursor.position];
+                    }
+
+                    if(next.type=="parenthesis-start"){
+                        compteur = compteur + 1;
+                        cursor.position++
+                        next = tokens[cursor.position];                      
+                    }
+                     while(next.type==="space") {
+                         cursor.position++
+                         next = tokens[cursor.position];
+                     }
+
+                    if(next.type=="identifier" || next.type=="number" || next.type=="number-float"){
+                        cursor.position++
+                        next = tokens[cursor.position];
+                        
+                         while(next.type==="space") {
+                             cursor.position++
+                             next = tokens[cursor.position];
+                         }
+                            //if((next.type=="equal" && next.type=="equal" && next.type=="equal") || 
+                            if(next.type=="inf-default_operator" || next.type=="sup-default_operator"){
+                                if(operateurConditionnel == undefined){
+                                    operateurConditionnel = next.type;
+                                }else{
+                                    throw 'Erreur plusieurs opérateurs conditionnel est présent dans ce if'
+                                }
+                            }
+                        }  
+
+                        while(next.type==="space") {
+                            cursor.position++
+                            next = tokens[cursor.position];
+                        }
+
+                        if(next.type=="identifier" || next.type=="number" || next.type=="number-float"){
+                            
+                        }
+
+                            // while(next.type==="egal") {
+                            //     cursor.position++
+                            //     next = tokens[cursor.position];
+                            //     compteurEgal = 0;
+                            //     compteurEgal = compteurEgal + 1;
+                            // }
+
+                            // if(compteurEgal = 3){
+                            //     operateurConditionnel = true
+                            // }else if(compteurEgal > 3){
+                            //     throw 'Erreur syntaxe'
+                            // }
+
+
+                            // while(next.type==="space") {
+                            //     cursor.position++
+                            //     next = tokens[cursor.position];
+                            // }    
+                
+
+                while(next.type==="space") {
+                    cursor.position++
+                    next = tokens[cursor.position];
+                }   
+
+                if(next.type=="parenthesis-end"){
+                    compteur = compteur - 1;
+                }
+                    cursor.position++
+                    next = tokens[cursor.position];
+                
+            }
+                
+                //i = i + 1;
+
+            //console.log(compteur);
+            if(compteur != 0){
+                if(compteur < 0){
+                    throw 'Il manque ' + compteur * -1 + ' parenthèse(s) ouvrante';
+                }else if(compteur > 0){
+                    throw 'Il manque ' + compteur + 'parenthèse(s) fermante';
+                }
+            }else{                
+                return "Condition if avec l'opérateur : " + operateurConditionnel;
+            }
+            break;
 		}
 	}	
 	
