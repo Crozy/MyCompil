@@ -1,6 +1,8 @@
 import ExpressionVarDeclaration from "./ExpressionVarDeclaration.js";
 import ExpressionVarAssignation from "./ExpressionVarAssignation.js";
 import ExpressionIfCondition from "./ExpressionIfCondition.js";
+import ExpressionIfBody from "./ExpressionIfBody.js";
+import ExpressionIfControlFlow from "./ExpressionIfControlFlow.js";
 
 export default class ExpressionFactory{
 	
@@ -125,9 +127,9 @@ export default class ExpressionFactory{
                     next = tokens[cursor.position];
                 }
                 if(next.type==="parenthesis-start") {
-                    cond = new ExpressionIfCondition(tokens, cursor.position);
+                    let cond = new ExpressionIfCondition(tokens, cursor);
                     childs.push(cond);
-                    cursor.position = cond.crs;
+                    cursor.position = cond.cp;
                 } else {
                     throw 'error in if condition';
                 }
@@ -144,10 +146,13 @@ export default class ExpressionFactory{
                         cursor.position++
                         next = tokens[cursor.position];
                     }
-                    cond = new ExpressionIfBody(tokens, cursor.position);
-                    childs.push(cond);
-                    cursor.position = cond.crs;
+                    childs.push(new ExpressionIfBody(tokens, cursor.position));
+                    return new ExpressionIfControlFlow();
                 } else {
+                    console.log();
+                    console.log(tokens[cursor.position])
+                    console.log(tokens[cursor.position-1])
+                    console.log(tokens[cursor.position-2])
                     throw 'error in if body'
                 }
                 break;
