@@ -7,5 +7,3 @@ if((age < (5*7)) && (age > 0))
     nom = ((nom + " ") + "Turowicz");
 }
 
-boolean res;
-res = datation(nom,age);

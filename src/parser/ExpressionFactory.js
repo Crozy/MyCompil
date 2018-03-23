@@ -1,5 +1,6 @@
 import ExpressionVarDeclaration from "./ExpressionVarDeclaration.js";
 import ExpressionVarAssignation from "./ExpressionVarAssignation.js";
+import ExpressionIfCondition from "./ExpressionIfCondition.js";
 
 export default class ExpressionFactory{
 	
@@ -115,23 +116,41 @@ export default class ExpressionFactory{
                     throw 'You have to define a identifier for your variable.';
                 }
                 break;
-			//case 'if-control_flow':
-                //TODO
-                //break;
-			// case 'equal':
-			// 	if(tokens[cursor.position-1].type=="space" && tokens[cursor.position-2].type=="identifier"){
-			// 		cursor.position++
-			// 		let next = tokens[cursor.position];
-			// 		if(next.type!="space"){
-			// 			throw 'You have to put a space after a variable assignation.';
-			// 		}
-			// 		cursor.position++
-			// 		next = tokens[cursor.position];
-			// 		return new ExpressionVarAssignation(tokens[cursor.position-4], next);
-			// 	}else{
-			// 		throw 'You have to put a space after a variable declaration.';
-			// 	}
-			// 	break;
+			case 'if-control_flow':
+                childs.push(next);
+                cursor.position++
+                next = tokens[cursor.position];
+                while(next.type==="space") {
+                    cursor.position++
+                    next = tokens[cursor.position];
+                }
+                if(next.type==="parenthesis-start") {
+                    cond = new ExpressionIfCondition(tokens, cursor.position);
+                    childs.push(cond);
+                    cursor.position = cond.crs;
+                } else {
+                    throw 'error in if condition';
+                }
+                cursor.position++
+                next = tokens[cursor.position];
+                while(next.type==="space" || next.type==="line-break-r" || next.type==="line-break") {
+                    cursor.position++
+                    next = tokens[cursor.position];
+                }
+                if(next.type==="accolade-start") {
+                    cursor.position++
+                    next = tokens[cursor.position];
+                    while(next.type==="space" || next.type==="line-break-r" || next.type==="line-break") {
+                        cursor.position++
+                        next = tokens[cursor.position];
+                    }
+                    cond = new ExpressionIfBody(tokens, cursor.position);
+                    childs.push(cond);
+                    cursor.position = cond.crs;
+                } else {
+                    throw 'error in if body'
+                }
+                break;
 		}
 	}	
 	

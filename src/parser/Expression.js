@@ -4,6 +4,7 @@ class Expression {
 		if (!type) throw new Error("an expression requires a type")
 		this.type = type;
 		this.childs = [];
+        this.crs = 0;
 	}
 	
 	addChild(expression){
